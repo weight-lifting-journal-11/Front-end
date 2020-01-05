@@ -4,7 +4,6 @@ import axios from 'axios';
 const Login = () => {
   const [ credentials, setCredentials ] = useState({ username: "", password: "" });
   const [ isFetching, setIsFetching ] = useState(false);
-  const token = localStorage.getItem('token');
 
   const handleChanges = event => {
     setCredentials(
@@ -16,9 +15,9 @@ const Login = () => {
   const login = event => {
     event.preventDefault();
     axios
-      .post('BACKEND_ENDPOINT_GOES_HERE', credentials, {Authorization: token})
+      .post('BACKEND_ENDPOINT_GOES_HERE', credentials)
       .then(res => {
-        console.log(res)
+        localStorage.setItem('token', res.data.payload)
       })
       .catch(err => {
         console.log(err)
