@@ -1,18 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const JournalCard = () => {
+const JournalCard = ({date, region, id}) => {
 
     return (
         <div>
         // CreateExercise form to create new exercise to card
-
-        // Contains workout and all exercises
-            <h1>Workout Name</h1>
-            <ul>
-                <li>Exercise 1</li>
-                <li>Exercise 2</li>
-                <li>Exercise 3</li>
-            </ul>
+            <Link to={`/dashboard/${id}`}>
+                <h1>Workout: {region}</h1>
+            </Link>
+            <h2>Date: {date}</h2>
         </div>
     )
 }
