@@ -5,6 +5,7 @@ import './App.css';
 import Login from './components/Forms/Login';
 import Dashboard from './components/Common/Dashboard';
 import PrivateRoute from './utilities/PrivateRoute';
+import JournalEntry from './components/Common/JournalEntry';
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
           </li>
         </ul>
         <Switch>
-          <PrivateRoute path='/dashboard' component={Dashboard} />
+          <PrivateRoute exact path='/dashboard' component={Dashboard} />
+          <Route path='/dashboard/:id' component={JournalEntry}/>
           <Route path='/login' component={Login} />
           <Route component={Login} />
         </Switch>

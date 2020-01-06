@@ -31,7 +31,12 @@ const JournalList = () => {
             // CreateJournal form to create a new workout
             <h1>Journal list</h1>
             {journals.map(journal => (
-                <JournalCard key={journal.id} date={journal.date} region={journal.region}/>
+                <JournalCard 
+                key={journal.id} 
+                date={journal.date} 
+                region={journal.region}
+                id={journal.id}
+                />
             ))}
         </div>
     )
