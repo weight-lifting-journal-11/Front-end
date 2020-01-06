@@ -12,8 +12,12 @@ function App() {
           <li>
             <Link to='/login'>Login</Link>
           </li>
+          <li>
+            <Link to='/dashboard'>Dashboard</Link>
+          </li>
         </ul>
         <Switch>
+          <Route path='/dashboard' component={Dashboard} />
           <Route path='/login' component={Login} />
           <Route component={Login} />
         </Switch>

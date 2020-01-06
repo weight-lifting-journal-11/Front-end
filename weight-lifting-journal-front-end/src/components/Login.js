@@ -15,9 +15,11 @@ const Login = () => {
   const login = event => {
     event.preventDefault();
     axios
-      .post('BACKEND_ENDPOINT_GOES_HERE', credentials)
+      .post('https://weight-lifting-journal-11.herokuapp.com/api/auth/login', credentials)
       .then(res => {
-        localStorage.setItem('token', res.data.payload)
+        console.log(res)
+        localStorage.setItem('token', res.data.token);
+        setCredentials({ username: "", password: "" });
       })
       .catch(err => {
         console.log(err)
