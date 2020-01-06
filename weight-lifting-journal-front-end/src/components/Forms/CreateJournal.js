@@ -16,7 +16,6 @@ const CreateJournal = ({addNewJournal, today}) => {
             ...journal,
             [event.target.name]: event.target.value
         })
-        console.log(journal)
     }
     // Handle form submit
     const handleSubmit = event => {
@@ -42,7 +41,7 @@ const CreateJournal = ({addNewJournal, today}) => {
                 type="text"
                 value={journal.region}
                 />
-                <button type="submit">Submit</button>
+                <button type="submit">Add</button>
             </form>
         </div>
     )
