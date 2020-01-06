@@ -14,9 +14,10 @@ const JournalList = () => {
     useEffect(() => {
         setLoading(true)
         axios
-        .get()
+        .get('https://weight-lifting-journal-11.herokuapp.com/api/journals/users/7')
         .then(response => {
             setLoading(false);
+            setJournals(response.data)
             console.log(response)
         })
         .catch(error => console.log(error))
@@ -30,9 +31,8 @@ const JournalList = () => {
             // CreateJournal form to create a new workout
             <h1>Journal list</h1>
             {journals.map(journal => (
-                <JournalCard />
+                <JournalCard key={journal.id} date={journal.date} region={journal.region}/>
             ))}
-            // map over data and return a JournalCard
         </div>
     )
 }
