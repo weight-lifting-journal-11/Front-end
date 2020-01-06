@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
-import Login from './components/Login';
+import Login from './components/Forms/Login';
 
 function App() {
   return (
@@ -12,8 +12,12 @@ function App() {
           <li>
             <Link to='/login'>Login</Link>
           </li>
+          <li>
+            <Link to='/dashboard'>Dashboard</Link>
+          </li>
         </ul>
         <Switch>
+          <Route path='/dashboard' component={Dashboard} />
           <Route path='/login' component={Login} />
           <Route component={Login} />
         </Switch>
