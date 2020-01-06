@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 import JournalEntryCard from './JournalEntryCard';
+import Loading from './Loading';
 
 const JournalEntry = () => {
     const [loading, setLoading] = useState(true);
@@ -17,14 +18,18 @@ const JournalEntry = () => {
         .get(`https://weight-lifting-journal-11.herokuapp.com/api/exercises/journals/${id}`)
         .then(response => {
             console.log(response);
+            setLoading(false)
             setExercises(response.data);
         })
         .catch(error => console.log(error))
 
     }, [id])
 
+    if (loading) return <Loading />
+
     return (
         <div>
+            // Form to add exercise here
             {exercises.map(exercise => (
                 <JournalEntryCard
                 key={exercise.id}
