@@ -3,12 +3,13 @@ import axios from 'axios';
 
 import Loading from './Loading';
 import JournalCard from './JournalCard';
+import CreateJournal from '../Forms/CreateJournal';
 
 const JournalList = () => {
     // Set state for api data
     const [journals, setJournals] = useState([]);
     // Set state for loading
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
 
     // Get todays date in mm/dd/yyyy format
     let today = new Date();
@@ -17,32 +18,6 @@ const JournalList = () => {
     let year = today.getFullYear();
     today = `${month}/${day}/${year}`;
 
-    // State for form
-    const [journal, setJournal] = useState({
-        id: '',
-        userId: '',
-        date: today,
-        region: ''
-    })
-    // Handle input change
-    const handleChange = event => {
-        setJournal({
-            ...journal,
-            [event.target.name]: event.target.value
-        })
-        console.log(journal)
-    }
-    // Handle form submit
-    const handleSubmit = event => {
-        event.preventDefault();
-        addNewJournal(journal)
-        setJournal({
-            id: '',
-            userId: '',
-            date: today,
-            region: ''
-        })
-    }
     // Add new journal to state
     const addNewJournal = journal => {
         const newJournal = {
@@ -53,6 +28,7 @@ const JournalList = () => {
         }
         setJournals([...journals, newJournal]);
     }
+
     // axios call
     useEffect(() => {
         setLoading(true)
@@ -72,17 +48,10 @@ const JournalList = () => {
         
         <div>
             <h1>Journal list</h1>
-            <h2>Add Journal Entry</h2>
-            <form onSubmit={handleSubmit}>
-                <label>Name:</label>
-                <input
-                onChange={handleChange}
-                name="region"
-                type="text"
-                value={journal.region}
-                />
-                <button type="submit">Submit</button>
-            </form>
+            <CreateJournal 
+            addNewJournal={addNewJournal}
+            today={today}
+            />
             {journals.map(journal => (
                 <JournalCard 
                 key={journal.id} 
