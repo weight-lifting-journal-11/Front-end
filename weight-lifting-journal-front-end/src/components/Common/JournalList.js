@@ -3,12 +3,31 @@ import axios from 'axios';
 
 import Loading from './Loading';
 import JournalCard from './JournalCard';
+import CreateJournal from '../Forms/CreateJournal';
 
 const JournalList = () => {
     // Set state for api data
     const [journals, setJournals] = useState([]);
     // Set state for loading
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+
+    // Get todays date in mm/dd/yyyy format
+    let today = new Date();
+    let day = String(today.getDate()).padStart(2, '0');
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let year = today.getFullYear();
+    today = `${month}/${day}/${year}`;
+
+    // Add new journal to state
+    const addNewJournal = journal => {
+        const newJournal = {
+            id: journal.id,
+            userId: journal.userId,
+            date: today,
+            region: journal.region
+        }
+        setJournals([...journals, newJournal]);
+    }
 
     // axios call
     useEffect(() => {
@@ -28,8 +47,11 @@ const JournalList = () => {
     return (
         
         <div>
-            // CreateJournal form to create a new workout
             <h1>Journal list</h1>
+            <CreateJournal 
+            addNewJournal={addNewJournal}
+            today={today}
+            />
             {journals.map(journal => (
                 <JournalCard 
                 key={journal.id} 
