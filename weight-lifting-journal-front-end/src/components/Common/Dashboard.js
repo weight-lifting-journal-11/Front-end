@@ -9,6 +9,7 @@ const Dashboard = () => {
         // This is for display
         <div>
             <Navigation />
+            // JournalList here
             
         </div>
     )

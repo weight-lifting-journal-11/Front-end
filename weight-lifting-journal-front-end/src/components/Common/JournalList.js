@@ -2,9 +2,14 @@ import React from 'react';
 
 const JournalList = () => {
 
+    // axios call here
     return (
-        // this will contain axios call
-        <div>Journal List</div>
+        
+        <div>
+            // CreateJournal form to create a new workout
+            <h1>Journal list</h1>
+            // map over data and return a JournalCard
+        </div>
     )
 }
 
