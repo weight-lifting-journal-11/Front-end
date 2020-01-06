@@ -29,7 +29,17 @@ const JournalEntry = () => {
 
     return (
         <div>
-            // Form to add exercise here
+            <h1>Add exercise</h1>
+            <form>
+                <label>Name:</label>
+                <input />
+                <label>Reps:</label>
+                <input />
+                <label>Sets:</label>
+                <input />
+                <label>Weight:</label>
+                <input />
+            </form>
             {exercises.map(exercise => (
                 <JournalEntryCard
                 key={exercise.id}
