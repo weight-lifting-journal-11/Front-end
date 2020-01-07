@@ -1,4 +1,5 @@
 import React, { useEffect, useState} from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 
 import Loading from './Loading';
@@ -6,7 +7,7 @@ import JournalCard from './JournalCard';
 import CreateJournal from '../Forms/CreateJournal'
 import EditJournal from '../Forms/EditJournal'
 
-const JournalList = () => {
+const JournalList = ( currentUserID ) => {
     // Set state for api data
     const [journals, setJournals] = useState([]);
     // Set state for loading
@@ -35,7 +36,7 @@ const JournalList = () => {
     useEffect(() => {
         setLoading(true)
         axios
-        .get(`https://weight-lifting-journal-11.herokuapp.com/api/journals/users/7`, {token: localStorage.getItem('token')})
+        .get(`https://weight-lifting-journal-11.herokuapp.com/api/journals/users/${currentUserID}`, {token: localStorage.getItem('token')})
         .then(response => {
             setLoading(false);
             setJournals(response.data)
@@ -76,4 +77,10 @@ const JournalList = () => {
     )
 }
 
-export default JournalList;
+const mapStateToProps = state => {
+    return {
+        currentUserID: state.userID
+    }
+}
+
+export default connect (mapStateToProps)(JournalList);

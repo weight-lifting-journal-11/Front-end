@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { addJournal } from '../../actions/primaryActions';
 
 
-const CreateJournal = ({addJournal, today, addJournalLoading}) => {
+const CreateJournal = ({addJournal, today, addJournalLoading, currentUserID}) => {
 
     // State for form
     const [journal, setJournal] = useState({
         id: '',
-        userId: '',
+        userId: currentUserID,
         date: today,
         region: ''
     })
@@ -50,6 +50,7 @@ const CreateJournal = ({addJournal, today, addJournalLoading}) => {
 
 const mapStateToProps = state => {
     return {
+        currentUserID: state.userID,
         addJournalLoading: state.addJournalLoading,
     }
 }

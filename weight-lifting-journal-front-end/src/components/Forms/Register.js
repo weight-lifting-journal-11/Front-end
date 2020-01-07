@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { register } from '../../actions/primaryActions'
 
 const Register = props => {
@@ -49,7 +49,6 @@ const Register = props => {
 };
 
 const mapStateToProps = state => {
-    console.log('ppooopp', state);
     return {
       registerLoading: state.registerLoading,
     }

@@ -1,51 +1,51 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import { connect } from 'react-redux';
+import { login } from '../../actions/primaryActions';
 
-const Login = () => {
-  const [ credentials, setCredentials ] = useState({ username: "", password: "" });
-  const [ isFetching, setIsFetching ] = useState(false);
+const Login = props => {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    password: ""
+  });
 
   const handleChanges = event => {
-    setCredentials(
-      {...credentials, [event.target.name]: event.target.value}
-    )
-    console.log('new credentials from login component', credentials);
-  }
+    setCredentials({ ...credentials, [event.target.name]: event.target.value });
+    console.log("im a butt", credentials);
+  };
 
-  const login = event => {
+  const userLogin = event => {
     event.preventDefault();
-    axios
-      .post('https://weight-lifting-journal-11.herokuapp.com/api/auth/login', credentials)
-      .then(res => {
-        console.log(res)
-        localStorage.setItem('token', res.data.token);
-        setCredentials({ username: "", password: "" });
-      })
-      .catch(err => {
-        console.log(err)
-      })
-  }
+    console.log("MEOw")
+    props.login(credentials);
+    setCredentials({ username: "", password: "" });
+  };
 
   return (
-    <form onSubmit={login}>
-      <input 
+    <form onSubmit={userLogin}>
+      <input
         type="username"
         name="username"
         placeholder="username"
         value={credentials.username}
         onChange={handleChanges}
-        />
-      <input 
+      />
+      <input
         type="password"
         name="password"
         placeholder="password"
         value={credentials.password}
         onChange={handleChanges}
-        />
+      />
       <button>Log in</button>
     </form>
-  )
+  );
+};
+
+const mapStateToProps = state => {
+  return {
+    userID: state.userID,
+    loginLoading: state.loginLoading,
+  }
 }
 
-export default Login
-
+export default connect (mapStateToProps, {login})(Login);
