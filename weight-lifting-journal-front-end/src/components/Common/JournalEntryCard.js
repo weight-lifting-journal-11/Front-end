@@ -1,6 +1,6 @@
 import React from 'react';
 
-const JournalEntryCard = ({name, reps, sets, weight}) => {
+const JournalEntryCard = ({name, reps, sets, weight, id, removeExercise}) => {
     
     return (
         <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -20,6 +20,7 @@ const JournalEntryCard = ({name, reps, sets, weight}) => {
                     </tr>
                 </tbody>
             </table>
+            <button onClick={() => removeExercise(id)}>Delete</button>
         </div>
     )
 }

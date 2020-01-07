@@ -12,6 +12,7 @@ const JournalEntry = () => {
 
     const { id } = useParams();
 
+    // Add new exercise
     const addNewExercise = (exercise) => {
         const newExercise = {
             id: exercise.id,
@@ -22,7 +23,11 @@ const JournalEntry = () => {
         }
         setExercises([...exercises, newExercise])
     }
-    
+    // Remove Exercise
+    const removeExercise = id => {
+        setExercises(exercises.filter(exercise => exercise.id !== id))
+    }
+
     useEffect(() => {
         setLoading(true);
         axios
@@ -47,10 +52,12 @@ const JournalEntry = () => {
             {exercises.map(exercise => (
                 <JournalEntryCard
                 key={exercise.id}
+                id={exercise.id}
                 name={exercise.name}
                 reps={exercise.reps}
                 sets={exercise.sets}
                 weight={exercise.weight}
+                removeExercise={removeExercise}
                 />
             ))}
         </div>
