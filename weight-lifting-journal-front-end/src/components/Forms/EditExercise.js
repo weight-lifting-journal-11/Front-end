@@ -13,7 +13,6 @@ const EditExercise = () => {
             <form>
 
             </form>
-
         </div>
     )
 }
