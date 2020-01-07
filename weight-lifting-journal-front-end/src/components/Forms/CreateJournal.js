@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { addJournal } from '../../actions/primaryActions';
 
 
-const CreateJournal = ({addJournal, today, addJournalLoading, currentUserID}) => {
-
+const CreateJournal = ({addJournal, today, addJournalLoading}) => {
+    const userID = localStorage.getItem('userID')
     // State for form
     const [journal, setJournal] = useState({
-        id: '',
-        userId: currentUserID,
-        date: today,
+        userId: userID,
+        date: 'today',
         region: ''
     })
     // Handle input change
@@ -18,13 +17,13 @@ const CreateJournal = ({addJournal, today, addJournalLoading, currentUserID}) =>
             ...journal,
             [event.target.name]: event.target.value
         })
+        console.log(journal)
     }
     // Handle form submit
     const handleSubmit = event => {
         event.preventDefault();
         addJournal(journal)
         setJournal({
-            id: '',
             userId: '',
             date: today,
             region: ''

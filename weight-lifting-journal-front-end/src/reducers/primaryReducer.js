@@ -3,7 +3,7 @@ import { ADD_JOURNAL_START, ADD_JOURNAL_SUCCESS, ADD_JOURNAL_FAILURE, LOGIN_STAR
 export const initialState = {
   workouts: [],
   journals: [],
-  userID: 1,
+  userID: 0,
   loginLoading: false,
   registerLoading: false,
   addJournalLoading: false,
