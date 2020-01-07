@@ -9,7 +9,7 @@ const CreateJournal = ({addJournal, today, addJournalLoading, currentUserID}) =>
     const [journal, setJournal] = useState({
         id: '',
         userId: currentUserID,
-        date: today,
+        date: '',
         region: ''
     })
     // Handle input change
@@ -26,7 +26,7 @@ const CreateJournal = ({addJournal, today, addJournalLoading, currentUserID}) =>
         setJournal({
             id: '',
             userId: '',
-            date: today,
+            date: '',
             region: ''
         })
     }
