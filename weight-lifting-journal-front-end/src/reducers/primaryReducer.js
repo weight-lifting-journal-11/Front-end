@@ -1,7 +1,9 @@
-import { CREATE_WORKOUT_START, CREATE_WORKOUT_SUCCESS, CREATE_WORKOUT_FAILURE } from '../actions/primaryActions';
+import { CREATE_WORKOUT_START, CREATE_WORKOUT_SUCCESS, CREATE_WORKOUT_FAILURE, LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/primaryActions';
 
 export const initialState = {
   workouts: [],
+  userID: 0,
+  loginLoading: false,
   isFetching: false,
   isPosting: false,
   error: '',
@@ -19,11 +21,30 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         workouts: action.payload,
+        isFetching: false,
       }
     case CREATE_WORKOUT_FAILURE:
       return {
         ...state,
         error: action.payload,
+        isFetching: false,
+      }
+    case LOGIN_START:
+      return {
+        ...state,
+        loginLoading: true,
+      }
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        userID: action.payload,
+        loginLoading: false,
+      }
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        loginLoading: false,
       }
   }
 }

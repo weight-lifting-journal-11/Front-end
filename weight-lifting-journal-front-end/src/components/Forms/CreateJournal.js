@@ -28,7 +28,6 @@ const CreateJournal = ({addNewJournal, today}) => {
             region: ''
         })
     }
-    
 
     return (
         <div>
