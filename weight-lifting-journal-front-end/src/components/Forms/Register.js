@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import axios from 'axios'
+import { connect } from 'react-redux'
+import { register } from '../../actions/primaryActions'
 
-const Register = () => {
+const Register = props => {
   const [newUser, setNewUser] = useState({
     username: "",
     password: "",
     email: ""
   });
-  const [isFetching, setIsFetching] = useState(false);
 
   const handleChanges = event => {
     setNewUser({ ...newUser, [event.target.name]: event.target.value });
@@ -16,18 +16,8 @@ const Register = () => {
 
   const createNewUser = event => {
     event.preventDefault();
-    axios
-      .post(
-        "https://weight-lifting-journal-11.herokuapp.com/api/auth/register",
-        newUser
-      )
-      .then(res => {
-        console.log(res);
-        setNewUser({ username: "", password: "", email: "" });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    props.register(newUser)
+    setNewUser({ username: "", password: "", email: "" });
   };
 
   return (
@@ -58,4 +48,11 @@ const Register = () => {
   );
 };
 
-export default Register;
+const mapStateToProps = state => {
+    console.log('ppooopp', state);
+    return {
+      registerLoading: state.registerLoading,
+    }
+  }
+
+export default connect (mapStateToProps, {register})(Register);
