@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { addJournal } from '../../actions/primaryActions';
 
 
-const CreateJournal = ({addJournal, today, addJournalLoading, userID}) => {
+const CreateJournal = ({addJournal, today, addJournalLoading, currentUserID}) => {
 
     // State for form
     const [journal, setJournal] = useState({
         id: '',
-        userId: '',
+        userId: currentUserID,
         date: today,
         region: ''
     })
@@ -22,7 +22,7 @@ const CreateJournal = ({addJournal, today, addJournalLoading, userID}) => {
     // Handle form submit
     const handleSubmit = event => {
         event.preventDefault();
-        addJournal(journal, userID)
+        addJournal(journal)
         setJournal({
             id: '',
             userId: '',
@@ -50,7 +50,7 @@ const CreateJournal = ({addJournal, today, addJournalLoading, userID}) => {
 
 const mapStateToProps = state => {
     return {
-        userID: state.userID,
+        currentUserID: state.userID,
         addJournalLoading: state.addJournalLoading,
     }
 }

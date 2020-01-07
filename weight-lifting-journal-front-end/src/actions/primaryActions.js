@@ -36,9 +36,9 @@ export const login = credentials => dispatch => {
       credentials
     )
     .then(res => {
-      console.log(res);
+      console.log('login firing from primaryActions', res, res.data.id);
       localStorage.setItem("token", res.data.token);
-      dispatch({ LOGIN_SUCCESS, payload: res.data.userID })
+      dispatch({ LOGIN_SUCCESS, payload: res.data.id })
     })
     .catch(error => {
       dispatch({ type: LOGIN_FAILURE, payload: error.response })
@@ -46,7 +46,7 @@ export const login = credentials => dispatch => {
 }
 
 export const register = newUser => dispatch => {
-  console.log('login firing from primaryActions')
+  console.log('register firing from primaryActions')
   dispatch({ type: REGISTER_START });
   axios
     .post(

@@ -49,7 +49,6 @@ const Register = props => {
 };
 
 const mapStateToProps = state => {
-    console.log('ppooopp', state);
     return {
       registerLoading: state.registerLoading,
     }
