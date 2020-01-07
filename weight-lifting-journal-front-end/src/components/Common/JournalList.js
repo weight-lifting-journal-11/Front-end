@@ -9,7 +9,12 @@ const JournalList = () => {
     // Set state for api data
     const [journals, setJournals] = useState([]);
     // Set state for loading
-    const [loading, setLoading] = useState(true)
+    const [loading, setLoading] = useState(true);
+
+    // Removes Journal
+    const removeJournal = id => {
+        setJournals(journals.filter(journal => journal.id !== id))
+    }
 
     // axios call
     useEffect(() => {
@@ -38,6 +43,7 @@ const JournalList = () => {
                 date={journal.date} 
                 region={journal.region}
                 id={journal.id}
+                removeJournal={removeJournal}
                 />
             ))}
         </div>

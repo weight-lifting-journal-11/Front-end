@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const JournalCard = ({date, region, id}) => {
+const JournalCard = ({date, region, id, removeJournal}) => {
 
     return (
         <div>
@@ -9,6 +9,7 @@ const JournalCard = ({date, region, id}) => {
                 <h1>Workout: {region}</h1>
             </Link>
             <h2>Date: {date}</h2>
+            <button onClick={() => removeJournal(id)}>Delete</button>
         </div>
     )
 }
