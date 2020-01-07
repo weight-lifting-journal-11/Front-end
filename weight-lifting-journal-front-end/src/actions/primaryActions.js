@@ -14,11 +14,11 @@ export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
-export const addJournal = journal => dispatch => {
+export const addJournal = (journal, userID) => dispatch => {
   console.log('createNewJournal firing from primaryActions.js')
   dispatch({ type: ADD_JOURNAL_START });
   axios
-    .post('https://weight-lifting-journal-11.herokuapp.com/api/journals/users/7', journal, {Authorization: token})
+    .post(`https://weight-lifting-journal-11.herokuapp.com/api/journals/users/${userID}`, journal, {Authorization: token})
     .then(res => {
       dispatch({ type: ADD_JOURNAL_SUCCESS, payload: res.data })
     })
@@ -55,6 +55,7 @@ export const register = newUser => dispatch => {
     )
     .then(res => {
       console.log(res);
+      localStorage.setItem("token", res.data.token);
       dispatch({ type: REGISTER_SUCCESS, payload: res.data.message })
     })
     .catch(error => {
