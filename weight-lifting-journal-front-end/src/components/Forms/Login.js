@@ -10,12 +10,10 @@ const Login = props => {
 
   const handleChanges = event => {
     setCredentials({ ...credentials, [event.target.name]: event.target.value });
-    console.log("im a butt", credentials);
   };
 
   const userLogin = event => {
     event.preventDefault();
-    console.log("MEOw")
     props.login(credentials);
     setCredentials({ username: "", password: "" });
   };
