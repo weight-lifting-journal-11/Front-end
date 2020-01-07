@@ -2,19 +2,62 @@ import axios from 'axios';
 
 const token = localStorage.getItem('token');
 
-export const CREATE_WORKOUT_START = 'CREATE_WORKOUT_START';
-export const CREATE_WORKOUT_SUCCESS = 'CREATE_WORKOUT_SUCCESS';
-export const CREATE_WORKOUT_FAILURE = 'CREATE_WORKOUT_FAILURE';
+export const ADD_JOURNAL_START = 'ADD_JOURNAL_START';
+export const ADD_JOURNAL_SUCCESS = 'ADD_JOURNAL_SUCCESS';
+export const ADD_JOURNAL_FAILURE = 'ADD_JOURNAL_FAILURE';
 
-export const createWorkout = newWorkout => dispatch => {
-  console.log('createWorkout firing from primaryActions.js')
-  dispatch({ type: CREATE_WORKOUT_START });
+export const LOGIN_START = 'LOGIN_START';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';
+
+export const REGISTER_START = 'REGISTER_START';
+export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
+export const REGISTER_FAILURE = 'REGISTER_FAILURE';
+
+export const addJournal = journal => dispatch => {
+  console.log('createNewJournal firing from primaryActions.js')
+  dispatch({ type: ADD_JOURNAL_START });
   axios
-    .post('BACKEND_ENDPOINT_GOES_HERE', newWorkout, {Authorization: token})
+    .post('https://weight-lifting-journal-11.herokuapp.com/api/journals/users/7', journal, {Authorization: token})
     .then(res => {
-      dispatch({ type: CREATE_WORKOUT_SUCCESS, payload: newWorkout })
+      dispatch({ type: ADD_JOURNAL_SUCCESS, payload: res.data })
     })
     .catch(error => {
-      dispatch({ type: CREATE_WORKOUT_FAILURE, payload: error.response })
+      dispatch({ type: ADD_JOURNAL_FAILURE, payload: error.response })
     })
+}
+
+export const login = credentials => dispatch => {
+  console.log('login firing from primaryActions')
+  dispatch({ type: LOGIN_START });
+  axios
+    .post(
+      "https://weight-lifting-journal-11.herokuapp.com/api/auth/login",
+      credentials
+    )
+    .then(res => {
+      console.log(res);
+      localStorage.setItem("token", res.data.token);
+      dispatch({ LOGIN_SUCCESS, payload: res.data.userID })
+    })
+    .catch(error => {
+      dispatch({ type: LOGIN_FAILURE, payload: error.response })
+    });
+}
+
+export const register = newUser => dispatch => {
+  console.log('login firing from primaryActions')
+  dispatch({ type: REGISTER_START });
+  axios
+    .post(
+      "https://weight-lifting-journal-11.herokuapp.com/api/auth/register",
+      newUser
+    )
+    .then(res => {
+      console.log(res);
+      dispatch({ type: REGISTER_SUCCESS, payload: res.data.message })
+    })
+    .catch(error => {
+      dispatch({ type: REGISTER_FAILURE, payload: error.response })
+    });
 }
