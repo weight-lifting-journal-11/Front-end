@@ -35,8 +35,9 @@ const JournalList = ( currentUserID ) => {
     // axios call
     useEffect(() => {
         setLoading(true)
+        console.log(currentUserID.currentUserID);
         axios
-        .get(`https://weight-lifting-journal-11.herokuapp.com/api/journals/users/${currentUserID}`, {token: localStorage.getItem('token')})
+        .get(`https://weight-lifting-journal-11.herokuapp.com/api/journals/users/${currentUserID.currentUserID}`, {token: localStorage.getItem('token')})
         .then(response => {
             setLoading(false);
             setJournals(response.data)

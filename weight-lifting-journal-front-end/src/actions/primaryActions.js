@@ -38,7 +38,7 @@ export const login = credentials => dispatch => {
     .then(res => {
       console.log('login firing from primaryActions', res, res.data.id);
       localStorage.setItem("token", res.data.token);
-      dispatch({ LOGIN_SUCCESS, payload: res.data.id })
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data.id })
     })
     .catch(error => {
       dispatch({ type: LOGIN_FAILURE, payload: error.response })
