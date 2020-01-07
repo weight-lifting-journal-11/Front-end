@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import Loading from './Loading';
 import JournalCard from './JournalCard';
+import CreateJournal from '../Forms/CreateJournal'
 
 const JournalList = () => {
     // Set state for api data
@@ -29,6 +30,7 @@ const JournalList = () => {
         
         <div>
             // CreateJournal form to create a new workout
+            <CreateJournal />
             <h1>Journal list</h1>
             {journals.map(journal => (
                 <JournalCard 

@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { connect } from 'react-redux';
+import { login } from '../actions/primaryActions';
 
-const Login = () => {
+const Login = props => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: ""
@@ -38,5 +39,12 @@ const Login = () => {
     </form>
   );
 };
+
+const mapStateToProps = state => {
+  return {
+    userID: state.userID,
+    loginLoading: state.loginLoading,
+  }
+}
 
 export default connect (mapStateToProps, {login})(Login);

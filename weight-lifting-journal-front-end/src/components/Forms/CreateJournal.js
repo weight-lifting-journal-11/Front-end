@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addJournal } from '../../actions/primaryActions';
 
 
-const CreateJournal = ({addNewJournal, today}) => {
+const CreateJournal = ({addJournal, today, addJournalLoading}) => {
 
     // State for form
     const [journal, setJournal] = useState({
@@ -20,7 +22,7 @@ const CreateJournal = ({addNewJournal, today}) => {
     // Handle form submit
     const handleSubmit = event => {
         event.preventDefault();
-        addNewJournal(journal)
+        addJournal(journal)
         setJournal({
             id: '',
             userId: '',
@@ -46,4 +48,10 @@ const CreateJournal = ({addNewJournal, today}) => {
     )
 }
 
-export default CreateJournal;
+const mapStateToProps = state => {
+    return {
+        addJournalLoading: state.addJournalLoading,
+    }
+}
+
+export default connect (mapStateToProps, {addJournal}) (CreateJournal);

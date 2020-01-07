@@ -1,9 +1,12 @@
-import { CREATE_WORKOUT_START, CREATE_WORKOUT_SUCCESS, CREATE_WORKOUT_FAILURE, LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE } from '../actions/primaryActions';
+import { ADD_JOURNAL_START, ADD_JOURNAL_SUCCESS, ADD_JOURNAL_FAILURE, LOGIN_START, LOGIN_SUCCESS, LOGIN_FAILURE, REGISTER_START, REGISTER_SUCCESS, REGISTER_FAILURE } from '../actions/primaryActions';
 
 export const initialState = {
   workouts: [],
+  journals: [],
   userID: 0,
   loginLoading: false,
+  registerLoading: false,
+  addJournalLoading: false,
   isFetching: false,
   isPosting: false,
   error: '',
@@ -12,22 +15,22 @@ export const initialState = {
 export const reducer = (state = initialState, action) => {
   console.log('payload from before the switch cases', action.payload)
   switch(action.type) {
-    case CREATE_WORKOUT_START:
+    case ADD_JOURNAL_START:
       return {
         ...state,
-        isFetching: true,
+        addJournalLoading: true,
       }
-    case CREATE_WORKOUT_SUCCESS:
+    case ADD_JOURNAL_SUCCESS:
       return {
         ...state,
-        workouts: action.payload,
-        isFetching: false,
+        journals: action.payload,
+        addJournalLoading: false,
       }
-    case CREATE_WORKOUT_FAILURE:
+    case ADD_JOURNAL_FAILURE:
       return {
         ...state,
         error: action.payload,
-        isFetching: false,
+        addJournalLoading: false,
       }
     case LOGIN_START:
       return {
@@ -46,5 +49,24 @@ export const reducer = (state = initialState, action) => {
         error: action.payload,
         loginLoading: false,
       }
+    case REGISTER_START:
+      return {
+        ...state,
+        registerLoading: true,
+      }
+    case REGISTER_SUCCESS:
+      return {
+        ...state,
+        userID: action.payload.id,
+        registerLoading: false,
+      }
+    case REGISTER_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+        registerLoading: false,
+      }
+    default:
+      return state;
   }
 }
