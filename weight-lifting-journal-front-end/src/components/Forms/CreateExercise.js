@@ -32,6 +32,7 @@ const CreateExercise = ({addNewExercise}) => {
 
     return (
         <div>
+            <h2>Add exercise</h2>
             <form onSubmit={handleSubmit}>
                 <label>Name:</label>
                 <input 
