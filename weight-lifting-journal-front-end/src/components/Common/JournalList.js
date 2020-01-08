@@ -1,4 +1,6 @@
 import React, { useEffect, useState} from 'react';
+import { connect } from 'react-redux';
+import { deleteJournal } from '../../actions/primaryActions';
 import axios from 'axios';
 
 import Loading from './Loading';
@@ -6,7 +8,7 @@ import JournalCard from './JournalCard';
 import CreateJournal from '../Forms/CreateJournal'
 import EditJournal from '../Forms/EditJournal'
 
-const JournalList = () => {
+const JournalList = ({ deleteJournal }) => {
     // Local Storage
     const userID = localStorage.getItem('userID');
     const token = localStorage.getItem('token');
@@ -31,6 +33,7 @@ const JournalList = () => {
     }
     // Removes Journal
     const removeJournal = id => {
+        deleteJournal(id)
         setJournals(journals.filter(journal => journal.id !== id))
     }
 
@@ -79,4 +82,10 @@ const JournalList = () => {
     )
 }
 
-export default JournalList;
+const mapStateToProps = state => {
+    return {
+        isDeleting: state.isDeleting,
+    }
+}
+
+export default connect (mapStateToProps, {deleteJournal}) (JournalList);
