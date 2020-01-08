@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setExercises } from '../../actions/primaryActions';
+import { setExercises, editExercise } from '../../actions/primaryActions';
 import axios from 'axios';
 
 
@@ -10,23 +10,24 @@ import Loading from './Loading';
 import CreateExercise from '../Forms/CreateExercise';
 import EditExercise from '../Forms/EditExercise';
 
-const JournalEntry = ({ exercises, setExercises }) => {
+const JournalEntry = ({ exercises, setExercises, editExercise }) => {
     const [loading, setLoading] = useState(true);
     const [editing, setEditing] = useState(false);
-    const initialExerciseState = useState({id: '', name: '', reps: '', sets: '', weight: ''});
+    const initialExerciseState = useState({journalId: '', id: '', name: '', reps: '', sets: '', weight: ''});
     const [currentExercise, setCurrentExercise] = useState(initialExerciseState);
 
     const { id } = useParams();
 
     // Edit exercise
-    const editExercise = exercise => {
+    const editExerciseHandler = exercise => {
         setEditing(true);
         setCurrentExercise({id: exercise.id, name: exercise.name, reps: exercise.reps, sets: exercise.sets, weight: exercise.weight})
     }
     // Update exercise
     const updatedExercise = (id, updatedExercise) => {
         setEditing(false);
-        setExercises(exercises.map(exercise => (exercise.id === id ? updatedExercise : exercise)))
+        editExercise(id, updatedExercise)
+        // setExercises(exercises.map(exercise => (exercise.id === id ? updatedExercise : exercise)))
     }
 
     // Add new exercise
@@ -84,7 +85,7 @@ const JournalEntry = ({ exercises, setExercises }) => {
                 sets={exercise.sets}
                 weight={exercise.weight}
                 exercise={exercise}
-                editExercise={editExercise}
+                editExercise={editExerciseHandler}
                 />
             ))}
         </div>
@@ -97,4 +98,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect (mapStateToProps, { setExercises })(JournalEntry);
+export default connect (mapStateToProps, { setExercises, editExercise })(JournalEntry);
