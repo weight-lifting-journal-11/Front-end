@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { register } from '../../actions/primaryActions'
 
+import { StyledLogin } from '../Styles/StyledLogin';
+
 const Register = props => {
   const [newUser, setNewUser] = useState({
     username: "",
@@ -21,30 +23,32 @@ const Register = props => {
   };
 
   return (
-    <form onSubmit={createNewUser}>
-      <input
-        type="username"
-        name="username"
-        placeholder="username"
-        value={newUser.username}
-        onChange={handleChanges}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="password"
-        value={newUser.password}
-        onChange={handleChanges}
-      />
-      <input
-        type="email"
-        name="email"
-        placeholder="email"
-        value={newUser.email}
-        onChange={handleChanges}
-      />
-      <button>Create your profile</button>
-    </form>
+    <StyledLogin>
+      <form onSubmit={createNewUser}>
+        <input
+          type="username"
+          name="username"
+          placeholder="username"
+          value={newUser.username}
+          onChange={handleChanges}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          value={newUser.password}
+          onChange={handleChanges}
+        />
+        <input
+          type="email"
+          name="email"
+          placeholder="email"
+          value={newUser.email}
+          onChange={handleChanges}
+        />
+        <button>Create your profile</button>
+      </form>
+    </StyledLogin>
   );
 };
 

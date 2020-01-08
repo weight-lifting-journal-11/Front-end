@@ -5,10 +5,5 @@ export const StyledLogin = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    form {
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-    }
+    background: #EDEDED;
 `;
