@@ -1,4 +1,6 @@
 import React, { useEffect, useState} from 'react';
+import { connect } from 'react-redux';
+import { deleteJournal, setJournals, editJournal } from '../../actions/primaryActions';
 import axios from 'axios';
 
 import Loading from './Loading';
@@ -6,11 +8,10 @@ import JournalCard from './JournalCard';
 import CreateJournal from '../Forms/CreateJournal'
 import EditJournal from '../Forms/EditJournal'
 
-const JournalList = () => {
+const JournalList = ({ deleteJournal, setJournals, journals, editJournal }) => {
+    // Local Storage
     const userID = localStorage.getItem('userID');
     const token = localStorage.getItem('token');
-    // Set state for api data
-    const [journals, setJournals] = useState([]);
     // Set state for loading
     const [loading, setLoading] = useState(true);
     // Set state for editing
@@ -19,18 +20,19 @@ const JournalList = () => {
     const [currentJournal, setCurrentJournal] = useState(initialJournalState);
 
     // Edit Journal
-    const editJournal = journal => {
+    const fireEditJournal = journal => {
         setEditing(true);
         setCurrentJournal({id: journal.id, userId: journal.userId, date: journal.date, region: journal.region})
     }
     // Update Journal
     const updatedJournal = (id, updatedJournal) => {
         setEditing(false);
-        setJournals(journals.map(journal => (journal.id === id ? updatedJournal : journal) ))
+        editJournal(id, updatedJournal)
+        // setJournals(journals.map(journal => (journal.id === id ? updatedJournal : journal) ))
     }
     // Removes Journal
     const removeJournal = id => {
-        setJournals(journals.filter(journal => journal.id !== id))
+        deleteJournal(id)
     }
 
     // axios call
@@ -41,7 +43,6 @@ const JournalList = () => {
         .then(response => {
             setLoading(false);
             setJournals(response.data)
-            console.log('helllooooooowwww', response)
         })
         .catch(error => console.log(error))
     }, [])
@@ -60,7 +61,7 @@ const JournalList = () => {
                 />
             ) : (
                 // CreateJournal form to create a new workout
-                <CreateJournal />
+                <CreateJournal setJournals={setJournals} journals={journals} />
             )}
             <h1>Journal list</h1>
             {journals.map(journal => (
@@ -70,7 +71,7 @@ const JournalList = () => {
                 region={journal.region}
                 id={journal.id}
                 removeJournal={removeJournal}
-                editJournal={editJournal}
+                editJournal={fireEditJournal}
                 journal={journal}
                 />
             ))}
@@ -78,4 +79,11 @@ const JournalList = () => {
     )
 }
 
-export default JournalList;
+const mapStateToProps = state => {
+    return {
+        isDeleting: state.isDeleting,
+        journals: state.journals
+    }
+}
+
+export default connect (mapStateToProps, {deleteJournal, setJournals, editJournal}) (JournalList);

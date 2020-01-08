@@ -5,7 +5,7 @@ const JournalCard = ({date, region, id, removeJournal, editJournal, journal}) =>
 
     return (
         <div>
-            <Link to={`/dashboard/${id}`}>
+            <Link to={`/dashboard`}>
                 <h1>Workout: {region}</h1>
             </Link>
             <h2>Date: {date}</h2>
