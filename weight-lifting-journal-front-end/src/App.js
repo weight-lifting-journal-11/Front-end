@@ -9,27 +9,32 @@ import PrivateRoute from './utilities/PrivateRoute';
 import JournalEntry from './components/Common/JournalEntry';
 import Home from './components/Common/Home';
 
+import { GlobalStyle } from './components/Styles/GlobalStyle';
+import { StyledNav} from './components/Styles/StyledNav'
+
+
 function App() {
   return (
+    <>
     <Router>
       <div className="App">
-        <div className="navigation">
-          <p>Logo</p>
-          <ul className="links">
-            <li>
-              <Link to='/login'>Login</Link>
-            </li>
-            <li>
-              <Link to='/register'>Register</Link>
-            </li>
-            <li>
-              <Link to='/dashboard'>Dashboard</Link>
-            </li>
-            <li>
-              <Link to='/'>Home</Link>
-            </li>
-          </ul>
-        </div>
+        <StyledNav>
+          <div className='nav-container'>
+            <p>Logo</p>
+            <Link to='/login'>
+              <p>Login</p>
+            </Link>
+            <Link to='/register'>
+              <p>Register</p>
+            </Link>
+            <Link to='/dashboard'>
+              <p>Dashboard</p>
+            </Link>
+            <Link to='/'>
+              <p>Home</p>
+            </Link>
+          </div>
+        </StyledNav>
         <Switch>
           <Route exact path='/' component={Home} />
           <PrivateRoute exact path='/dashboard' component={Dashboard} />
@@ -40,6 +45,8 @@ function App() {
         </Switch>
       </div>
     </Router>
+    <GlobalStyle/>
+    </>
   );
 }
 

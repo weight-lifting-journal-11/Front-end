@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { connect } from 'react-redux';
 import { login } from '../../actions/primaryActions';
 
+import { StyledLogin } from '../Styles/StyledLogin';
+
 const Login = props => {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -19,23 +21,25 @@ const Login = props => {
   };
 
   return (
-    <form onSubmit={userLogin}>
-      <input
-        type="username"
-        name="username"
-        placeholder="username"
-        value={credentials.username}
-        onChange={handleChanges}
-      />
-      <input
-        type="password"
-        name="password"
-        placeholder="password"
-        value={credentials.password}
-        onChange={handleChanges}
-      />
-      <button>Log in</button>
-    </form>
+    <StyledLogin>
+      <form onSubmit={userLogin}>
+        <input
+          type="username"
+          name="username"
+          placeholder="username"
+          value={credentials.username}
+          onChange={handleChanges}
+        />
+        <input
+          type="password"
+          name="password"
+          placeholder="password"
+          value={credentials.password}
+          onChange={handleChanges}
+        />
+        <button>Log in</button>
+      </form>
+    </StyledLogin>
   );
 };
 

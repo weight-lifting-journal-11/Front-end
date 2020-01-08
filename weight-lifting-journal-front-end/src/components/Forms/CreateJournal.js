@@ -3,12 +3,21 @@ import { connect } from 'react-redux';
 import { addJournal } from '../../actions/primaryActions';
 
 
-const CreateJournal = ({addJournal, today, addJournalLoading, displayNewJournal}) => {
+const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
     const userID = localStorage.getItem('userID')
+
+    // Define today
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, '0');
+    let mm = String(today.getMonth() + 1).padStart(2, '0');
+    let yyyy = today.getFullYear();
+
+    today = `${mm}/${dd}/${yyyy}`;
+
     // State for form
     const [journal, setJournal] = useState({
         userId: userID,
-        date: 'today',
+        date: today,
         region: ''
     })
     // Handle input change
@@ -16,7 +25,7 @@ const CreateJournal = ({addJournal, today, addJournalLoading, displayNewJournal}
         setJournal({
             ...journal,
             userId: userID,
-            date: 'today',
+            date: today,
             [event.target.name]: event.target.value
         })
         console.log(journal)

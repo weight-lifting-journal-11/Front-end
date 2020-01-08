@@ -1,18 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+import { StyledHome } from '../Styles/StyledHome';
+
 const Home = () => {
 
     return (
-        <div className="home">
+        <StyledHome>
             <h3>Welcome to Making Gainz!</h3>
-            <Link to='/login'>
-                <h4>Login</h4>
-            </Link>
-            <Link to='/register'>
-                <h4>Register</h4>
-            </Link>
-        </div>
+            <div className="buttons-container">
+                <Link to='/login'>
+                    <button>Login</button>
+                </Link>
+                <Link to='/register'>
+                    <button>Register</button>
+                </Link>
+            </div>
+        </StyledHome>
     )
 }
 export default Home;
