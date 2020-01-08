@@ -40,7 +40,7 @@ export const reducer = (state = initialState, action) => {
     case ADD_JOURNAL_SUCCESS:
       return {
         ...state,
-        journals: action.payload,
+        journals: [...state.journals, action.payload],
         addJournalLoading: false,
       }
     case ADD_JOURNAL_FAILURE:
