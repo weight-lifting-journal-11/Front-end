@@ -88,7 +88,8 @@ export const addJournal = (journal) => dispatch => {
   axios
     .post(`https://weight-lifting-journal-11.herokuapp.com/api/journals`, journal, {authorization: token})
     .then(res => {
-      dispatch({ type: ADD_JOURNAL_SUCCESS, payload: journal })
+      console.log('response from addJournal', res.data)
+      dispatch({ type: ADD_JOURNAL_SUCCESS, payload: res.data })
     })
     .catch(error => {
       dispatch({ type: ADD_JOURNAL_FAILURE, payload: error.response })
@@ -101,7 +102,7 @@ export const addExercise = (exercise) => dispatch => {
   axios
     .post('https://weight-lifting-journal-11.herokuapp.com/api/exercises', exercise, {authorization: token})
     .then(res => {
-      dispatch({ type: ADD_EXERCISE_SUCCESS, payload: exercise })
+      dispatch({ type: ADD_EXERCISE_SUCCESS, payload: res.data})
     })
     .catch(error => {
       dispatch({ type: ADD_EXERCISE_FAILURE, payload: error.response })

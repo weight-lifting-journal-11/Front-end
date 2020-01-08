@@ -141,7 +141,7 @@ export const reducer = (state = initialState, action) => {
       const filteredExercises = state.exercises.filter(exercise => exercise.id !== action.payload)
       return {
         ...state,
-        exercises: [filteredExercises],
+        exercises: filteredExercises,
         isDeletingExercise: false,
       }
     case DELETE_EXERCISE_FAILURE:

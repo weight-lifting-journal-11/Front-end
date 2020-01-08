@@ -26,7 +26,7 @@ const CreateExercise = ({addExercise, journalId}) => {
         event.preventDefault();
         addExercise(exercise);
         setExercise({
-            journalId: '',
+            journalId: journalId,
             userId: userID,
             name: '',
             reps: '',
