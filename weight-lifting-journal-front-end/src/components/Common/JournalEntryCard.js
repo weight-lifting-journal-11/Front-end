@@ -1,6 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { deleteExercise } from '../../actions/primaryActions';
 
-const JournalEntryCard = ({name, reps, sets, weight, id, exercise, removeExercise, editExercise}) => {
+const JournalEntryCard = ({name, reps, sets, weight, id, exercise, deleteExercise, editExercise}) => {
     
     return (
         <div style={{display: 'flex', justifyContent: 'center'}}>
@@ -20,10 +22,17 @@ const JournalEntryCard = ({name, reps, sets, weight, id, exercise, removeExercis
                     </tr>
                 </tbody>
             </table>
-            <button onClick={() => removeExercise(id)}>Delete</button>
+            <button onClick={() => deleteExercise(id)}>Delete</button>
+            {console.log(id)}
             <button onClick={() => editExercise(exercise)}>Edit</button>
         </div>
     )
 }
 
-export default JournalEntryCard;
+const mapStateToProps = state => {
+    return {
+        exercises: state.exercises
+    }
+}
+
+export default connect (mapStateToProps, {deleteExercise} )(JournalEntryCard);

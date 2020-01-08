@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { setExercises, deleteExercise } from '../../actions/primaryActions';
+import { setExercises } from '../../actions/primaryActions';
 import axios from 'axios';
 
 
@@ -41,9 +41,9 @@ const JournalEntry = ({ exercises, setExercises }) => {
         setExercises([...exercises, newExercise])
     }
     // Remove Exercise
-    const removeExercise = id => {
-        deleteExercise(id);
-    }
+    // const removeExercise = id => {
+    //     deleteExercise(id);
+    // }
 
     useEffect(() => {
         setLoading(true);
@@ -84,7 +84,6 @@ const JournalEntry = ({ exercises, setExercises }) => {
                 sets={exercise.sets}
                 weight={exercise.weight}
                 exercise={exercise}
-                removeExercise={removeExercise}
                 editExercise={editExercise}
                 />
             ))}
@@ -98,4 +97,4 @@ const mapStateToProps = state => {
     }
 }
 
-export default connect (mapStateToProps, {setExercises, deleteExercise})(JournalEntry);
+export default connect (mapStateToProps, { setExercises })(JournalEntry);
