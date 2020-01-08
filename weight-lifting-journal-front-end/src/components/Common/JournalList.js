@@ -63,7 +63,7 @@ const JournalList = ({ deleteJournal, setJournals, journals, editJournal }) => {
                 // CreateJournal form to create a new workout
                 <CreateJournal setJournals={setJournals} journals={journals} />
             )}
-            <h3>Journal list</h3>
+            <h4>Journal list</h4>
             {journals.map(journal => (
                 <JournalCard 
                 key={journal.id} 

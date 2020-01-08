@@ -5,12 +5,12 @@ const Home = () => {
 
     return (
         <div className="home">
-            <h1>Welcome to Making Gainz!</h1>
+            <h3>Welcome to Making Gainz!</h3>
             <Link to='/login'>
-                <h3>Login</h3>
+                <h4>Login</h4>
             </Link>
             <Link to='/register'>
-                <h3>Register</h3>
+                <h4>Register</h4>
             </Link>
         </div>
     )
