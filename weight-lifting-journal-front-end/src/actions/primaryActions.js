@@ -68,14 +68,14 @@ export const setJournals = journals => dispatch => {
   dispatch({type: FETCH_JOURNAL_SUCCESS, payload: journals})
 }
 
-export const addJournal = (journal, setJournals, journals) => dispatch => {
+export const addJournal = (journal) => dispatch => {
   console.log('createNewJournal firing from primaryActions.js')
   dispatch({ type: ADD_JOURNAL_START });
   axios
     .post(`https://weight-lifting-journal-11.herokuapp.com/api/journals`, journal, {authorization: token})
     .then(res => {
-      dispatch({ type: ADD_JOURNAL_SUCCESS, payload: res.data })
-      setJournals([...journals, journal]);
+      dispatch({ type: ADD_JOURNAL_SUCCESS, payload: journal })
+      // setJournals([...journals, journal]);
     })
     .catch(error => {
       dispatch({ type: ADD_JOURNAL_FAILURE, payload: error.response })

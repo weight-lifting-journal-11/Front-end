@@ -15,6 +15,8 @@ const CreateJournal = ({addJournal, today, addJournalLoading, displayNewJournal,
     const handleChange = event => {
         setJournal({
             ...journal,
+            userId: userID,
+            date: 'today',
             [event.target.name]: event.target.value
         })
         console.log(journal)
