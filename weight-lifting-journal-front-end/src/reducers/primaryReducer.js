@@ -12,13 +12,20 @@ import {
   DELETE_JOURNAL_SUCCESS, 
   DELETE_JOURNAL_FAILURE, 
   FETCH_JOURNAL_SUCCESS,
+  FETCH_EXERCISES_SUCCESS,
   EDIT_JOURNAL_START,
   EDIT_JOURNAL_SUCCESS,
-  EDIT_JOURNAL_FAILURE
+  EDIT_JOURNAL_FAILURE,
+  DELETE_EXERCISE_START,
+  DELETE_EXERCISE_SUCCESS,
+  DELETE_EXERCISE_FAILURE,
+  ADD_EXERCISE_START,
+  ADD_EXERCISE_SUCCESS,
+  ADD_EXERCISE_FAILURE,
 } from '../actions/primaryActions';
 
 export const initialState = {
-  workouts: [],
+  exercises: [],
   journals: [],
   userID: 0,
   loginLoading: false,
@@ -26,6 +33,8 @@ export const initialState = {
   addJournalLoading: false,
   isDeleting: false,
   isEditing: false,
+  isDeletingExercise: false,
+  isAddingExercise: false,
   error: '',
 }
 
@@ -117,6 +126,45 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         journals: action.payload
+      }
+    case FETCH_EXERCISES_SUCCESS:
+      return {
+        ...state,
+        exercises: action.payload
+      }
+    case DELETE_EXERCISE_START:
+      return {
+        ...state,
+        isDeletingExercise: true,
+      }
+    case DELETE_EXERCISE_SUCCESS:
+      const filteredExercises = state.exercises.filter(exercise => exercise.id !== action.payload)
+      return {
+        ...state,
+        exercises: [filteredExercises],
+        isDeletingExercise: false,
+      }
+    case DELETE_EXERCISE_FAILURE:
+      return {
+        ...state,
+        error: action.payload,
+      }
+    case ADD_EXERCISE_START:
+      return {
+        ...state,
+        isAddingExercise: true,
+      }
+    case ADD_EXERCISE_SUCCESS:
+      return {
+        ...state,
+        exercises: [...state.exercises, action.payload],
+        isAddingExercise: false,
+      }
+    case ADD_JOURNAL_FAILURE:
+      return {
+        ...state,
+        isAddingExercise: false,
+        error: action.payload,
       }
     default:
       return state;

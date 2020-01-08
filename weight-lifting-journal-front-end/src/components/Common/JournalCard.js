@@ -10,6 +10,7 @@ const JournalCard = ({date, region, id, removeJournal, editJournal, journal}) =>
             </Link>
             <h5>Date: {date}</h5>
             <button onClick={() => removeJournal(id)}>Delete</button>
+            {console.log('id from inside journalCard', id)}
             <button onClick={() => editJournal(journal)}>Edit</button>
         </div>
     )

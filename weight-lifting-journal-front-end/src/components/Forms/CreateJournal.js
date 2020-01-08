@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { addJournal } from '../../actions/primaryActions';
 
 
-const CreateJournal = ({addJournal, today, addJournalLoading, displayNewJournal, setJournals, journals}) => {
+const CreateJournal = ({addJournal, today, addJournalLoading, displayNewJournal}) => {
     const userID = localStorage.getItem('userID')
     // State for form
     const [journal, setJournal] = useState({
@@ -24,7 +24,7 @@ const CreateJournal = ({addJournal, today, addJournalLoading, displayNewJournal,
     // Handle form submit
     const handleSubmit = event => {
         event.preventDefault();
-        addJournal(journal, setJournals, journals);
+        addJournal(journal);
         setJournal({
             userId: '',
             date: '',

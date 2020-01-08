@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { setExercises, deleteExercise } from '../../actions/primaryActions';
 import axios from 'axios';
+
 
 import JournalEntryCard from './JournalEntryCard';
 import Loading from './Loading';
 import CreateExercise from '../Forms/CreateExercise';
 import EditExercise from '../Forms/EditExercise';
 
-const JournalEntry = () => {
+const JournalEntry = ({ exercises, setExercises }) => {
     const [loading, setLoading] = useState(true);
-    const [exercises, setExercises] = useState([]);
-
     const [editing, setEditing] = useState(false);
     const initialExerciseState = useState({id: '', name: '', reps: '', sets: '', weight: ''});
     const [currentExercise, setCurrentExercise] = useState(initialExerciseState);
@@ -41,7 +42,7 @@ const JournalEntry = () => {
     }
     // Remove Exercise
     const removeExercise = id => {
-        setExercises(exercises.filter(exercise => exercise.id !== id))
+        deleteExercise(id);
     }
 
     useEffect(() => {
@@ -71,6 +72,7 @@ const JournalEntry = () => {
             ) : (
                 <CreateExercise 
                 addNewExercise={addNewExercise}
+                journalId={id}
                 />
             )}
             {exercises.map(exercise => (
@@ -90,4 +92,10 @@ const JournalEntry = () => {
     )
 }
 
-export default JournalEntry;
+const mapStateToProps = state => {
+    return {
+        exercises: state.exercises,
+    }
+}
+
+export default connect (mapStateToProps, {setExercises, deleteExercise})(JournalEntry);

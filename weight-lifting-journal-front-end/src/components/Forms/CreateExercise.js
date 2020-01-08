@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
+import { connect } from 'react-redux';
+import { addExercise } from '../../actions/primaryActions';
 
-const CreateExercise = ({addNewExercise}) => {
-
+const CreateExercise = ({addExercise, journalId}) => {
+    const userID = localStorage.getItem('userID')
     // State for form
     const [exercise, setExercise] = useState({
-        id: '',
+        journalId: journalId,
+        userId: userID,
         name: '',
         reps: '',
         sets: '',
@@ -16,13 +19,15 @@ const CreateExercise = ({addNewExercise}) => {
             ...exercise,
             [event.target.name]: event.target.value
         })
+        console.log('this is journalID and the id from journalEntry', journalId)
     }
     // Handle form submit
     const handleSubmit = event => {
         event.preventDefault();
-        addNewExercise(exercise)
+        addExercise(exercise);
         setExercise({
-            id: '',
+            journalId: '',
+            userId: userID,
             name: '',
             reps: '',
             sets: '',
@@ -68,4 +73,10 @@ const CreateExercise = ({addNewExercise}) => {
     )
 }
 
-export default CreateExercise;
+const mapStateToProps = state => {
+    return {
+        exercises: state.exercises,
+    }
+}
+
+export default connect (mapStateToProps, {addExercise})(CreateExercise);

@@ -18,6 +18,10 @@ export const ADD_JOURNAL_START = 'ADD_JOURNAL_START';
 export const ADD_JOURNAL_SUCCESS = 'ADD_JOURNAL_SUCCESS';
 export const ADD_JOURNAL_FAILURE = 'ADD_JOURNAL_FAILURE';
 
+export const ADD_EXERCISE_START = 'ADD_EXERCISE_START';
+export const ADD_EXERCISE_SUCCESS = 'ADD_EXERCISE_SUCCESS';
+export const ADD_EXERCISE_FAILURE = 'ADD_EXERCISE_FAILURE';
+
 export const DELETE_JOURNAL_START = 'DELETE_JOURNAL_START';
 export const DELETE_JOURNAL_SUCCESS = 'DELETE_JOURNAL_SUCCESS';
 export const DELETE_JOURNAL_FAILURE = 'DELETE_JOURNAL_FAILURE';
@@ -25,6 +29,12 @@ export const DELETE_JOURNAL_FAILURE = 'DELETE_JOURNAL_FAILURE';
 export const EDIT_JOURNAL_START = 'EDIT_JOURNAL_START';
 export const EDIT_JOURNAL_SUCCESS = 'EDIT_JOURNAL_SUCCESS';
 export const EDIT_JOURNAL_FAILURE = 'EDIT_JOURNAL_FAILURE';
+
+export const DELETE_EXERCISE_START = 'DELETE_EXERCISE_START';
+export const DELETE_EXERCISE_SUCCESS = 'DELETE_EXERCISE_SUCCESS';
+export const DELETE_EXERCISE_FAILURE = 'DELETE_EXERCISE_FAILURE';
+
+export const FETCH_EXERCISES_SUCCESS = 'FETCH_EXERCISES_SUCCESS';
 
 export const login = credentials => dispatch => {
   console.log('login firing from primaryActions')
@@ -65,7 +75,11 @@ export const register = newUser => dispatch => {
 }
 
 export const setJournals = journals => dispatch => {
-  dispatch({type: FETCH_JOURNAL_SUCCESS, payload: journals})
+  dispatch({ type: FETCH_JOURNAL_SUCCESS, payload: journals })
+}
+
+export const setExercises = exercises => dispatch => {
+  dispatch({ type: FETCH_EXERCISES_SUCCESS, payload: exercises })
 }
 
 export const addJournal = (journal) => dispatch => {
@@ -75,10 +89,22 @@ export const addJournal = (journal) => dispatch => {
     .post(`https://weight-lifting-journal-11.herokuapp.com/api/journals`, journal, {authorization: token})
     .then(res => {
       dispatch({ type: ADD_JOURNAL_SUCCESS, payload: journal })
-      // setJournals([...journals, journal]);
     })
     .catch(error => {
       dispatch({ type: ADD_JOURNAL_FAILURE, payload: error.response })
+    })
+}
+
+export const addExercise = (exercise) => dispatch => {
+  console.log('addExercise firing from actions')
+  dispatch({ type: ADD_EXERCISE_START });
+  axios
+    .post('https://weight-lifting-journal-11.herokuapp.com/api/exercises', exercise, {authorization: token})
+    .then(res => {
+      dispatch({ type: ADD_EXERCISE_SUCCESS, payload: exercise })
+    })
+    .catch(error => {
+      dispatch({ type: ADD_EXERCISE_FAILURE, payload: error.response })
     })
 }
 
@@ -106,5 +132,19 @@ export const editJournal = (id, journal) => dispatch => {
     })
     .catch(error => {
       dispatch({ type: EDIT_JOURNAL_FAILURE, payload: error.response })
+    })
+}
+
+export const deleteExercise = (id) => dispatch => {
+  console.log('deleteExercise firing from primaryActions.js')
+  dispatch({ type: DELETE_EXERCISE_START });
+  axios
+    .delete(`https://weight-lifting-journal-11.herokuapp.com/api/exercises/${id}`, {authorization: token})
+    .then(res => {
+      console.log('response from within deleteEXERCISE', res)
+      dispatch({ type: DELETE_EXERCISE_SUCCESS, payload: id })
+    })
+    .catch(error => {
+      dispatch({ type: DELETE_EXERCISE_FAILURE, payload: error.response })
     })
 }
