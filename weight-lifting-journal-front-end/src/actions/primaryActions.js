@@ -10,6 +10,10 @@ export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
+export const FETCH_JOURNAL_START = 'FETCH_JOURNAL_START';
+export const FETCH_JOURNAL_SUCCESS = 'FETCH_JOURNAL_SUCCESS';
+export const FETCH_JOURNAL_FAILURE = 'FETCH_JOURNAL_FAILURE';
+
 export const ADD_JOURNAL_START = 'ADD_JOURNAL_START';
 export const ADD_JOURNAL_SUCCESS = 'ADD_JOURNAL_SUCCESS';
 export const ADD_JOURNAL_FAILURE = 'ADD_JOURNAL_FAILURE';
@@ -17,6 +21,10 @@ export const ADD_JOURNAL_FAILURE = 'ADD_JOURNAL_FAILURE';
 export const DELETE_JOURNAL_START = 'DELETE_JOURNAL_START';
 export const DELETE_JOURNAL_SUCCESS = 'DELETE_JOURNAL_SUCCESS';
 export const DELETE_JOURNAL_FAILURE = 'DELETE_JOURNAL_FAILURE';
+
+export const EDIT_JOURNAL_START = 'EDIT_JOURNAL_START';
+export const EDIT_JOURNAL_SUCCESS = 'EDIT_JOURNAL_SUCCESS';
+export const EDIT_JOURNAL_FAILURE = 'EDIT_JOURNAL_FAILURE';
 
 export const login = credentials => dispatch => {
   console.log('login firing from primaryActions')
@@ -56,6 +64,10 @@ export const register = newUser => dispatch => {
     });
 }
 
+export const setJournals = journals => dispatch => {
+  dispatch({type: FETCH_JOURNAL_SUCCESS, payload: journals})
+}
+
 export const addJournal = (journal, setJournals, journals) => dispatch => {
   console.log('createNewJournal firing from primaryActions.js')
   dispatch({ type: ADD_JOURNAL_START });
@@ -77,9 +89,22 @@ export const deleteJournal = (id) => dispatch => {
     .delete(`https://weight-lifting-journal-11.herokuapp.com/api/journals/${id}`, {authorization: token})
     .then(res => {
       console.log('response from within deleteJournal', res)
-      dispatch({ type: DELETE_JOURNAL_SUCCESS, payload: res.data })
+      dispatch({ type: DELETE_JOURNAL_SUCCESS, payload: id})
     })
     .catch(error => {
       dispatch({ type: DELETE_JOURNAL_FAILURE, payload: error.response })
+    })
+}
+
+export const editJournal = (id, journal) => dispatch => {
+  dispatch({ type: EDIT_JOURNAL_START });
+  axios
+    .put(`https://weight-lifting-journal-11.herokuapp.com/api/journals/${id}`, journal, {authorization: token})
+    .then(res => {
+      console.log('response from inside redux editJournal', res)
+      dispatch({ type: EDIT_JOURNAL_SUCCESS, payload: journal })
+    })
+    .catch(error => {
+      dispatch({ type: EDIT_JOURNAL_FAILURE, payload: error.response })
     })
 }

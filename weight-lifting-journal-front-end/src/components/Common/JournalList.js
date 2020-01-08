@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 import { connect } from 'react-redux';
-import { deleteJournal } from '../../actions/primaryActions';
+import { deleteJournal, setJournals, editJournal } from '../../actions/primaryActions';
 import axios from 'axios';
 
 import Loading from './Loading';
@@ -8,12 +8,10 @@ import JournalCard from './JournalCard';
 import CreateJournal from '../Forms/CreateJournal'
 import EditJournal from '../Forms/EditJournal'
 
-const JournalList = ({ deleteJournal }) => {
+const JournalList = ({ deleteJournal, setJournals, journals, editJournal }) => {
     // Local Storage
     const userID = localStorage.getItem('userID');
     const token = localStorage.getItem('token');
-    // Set state for api data
-    const [journals, setJournals] = useState([]);
     // Set state for loading
     const [loading, setLoading] = useState(true);
     // Set state for editing
@@ -22,19 +20,19 @@ const JournalList = ({ deleteJournal }) => {
     const [currentJournal, setCurrentJournal] = useState(initialJournalState);
 
     // Edit Journal
-    const editJournal = journal => {
+    const fireEditJournal = journal => {
         setEditing(true);
         setCurrentJournal({id: journal.id, userId: journal.userId, date: journal.date, region: journal.region})
     }
     // Update Journal
     const updatedJournal = (id, updatedJournal) => {
         setEditing(false);
-        setJournals(journals.map(journal => (journal.id === id ? updatedJournal : journal) ))
+        editJournal(id, updatedJournal)
+        // setJournals(journals.map(journal => (journal.id === id ? updatedJournal : journal) ))
     }
     // Removes Journal
     const removeJournal = id => {
         deleteJournal(id)
-        setJournals(journals.filter(journal => journal.id !== id))
     }
 
     // axios call
@@ -45,7 +43,6 @@ const JournalList = ({ deleteJournal }) => {
         .then(response => {
             setLoading(false);
             setJournals(response.data)
-            console.log('helllooooooowwww', response)
         })
         .catch(error => console.log(error))
     }, [])
@@ -74,7 +71,7 @@ const JournalList = ({ deleteJournal }) => {
                 region={journal.region}
                 id={journal.id}
                 removeJournal={removeJournal}
-                editJournal={editJournal}
+                editJournal={fireEditJournal}
                 journal={journal}
                 />
             ))}
@@ -85,7 +82,8 @@ const JournalList = ({ deleteJournal }) => {
 const mapStateToProps = state => {
     return {
         isDeleting: state.isDeleting,
+        journals: state.journals
     }
 }
 
-export default connect (mapStateToProps, {deleteJournal}) (JournalList);
+export default connect (mapStateToProps, {deleteJournal, setJournals, editJournal}) (JournalList);
