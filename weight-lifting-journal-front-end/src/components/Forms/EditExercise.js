@@ -15,7 +15,7 @@ const EditExercise = ({editing, setEditing, currentExercise, updatedExercise}) =
                 event.preventDefault()
                 updatedExercise(exercise.id, exercise)
             }}>
-            <h2>Edit</h2>
+            <h4>Edit</h4>
             <label>Name</label>
             <input 
             type="text"

@@ -32,7 +32,7 @@ const CreateExercise = ({addNewExercise}) => {
 
     return (
         <div>
-            <h2>Add exercise</h2>
+            <h4>Add exercise</h4>
             <form onSubmit={handleSubmit}>
                 <label>Name:</label>
                 <input 

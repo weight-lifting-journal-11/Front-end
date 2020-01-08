@@ -27,14 +27,14 @@ const CreateJournal = ({addJournal, today, addJournalLoading, displayNewJournal,
         addJournal(journal, setJournals, journals);
         setJournal({
             userId: '',
-            date: today,
+            date: '',
             region: ''
         })
     }
 
     return (
         <div>
-            <h2>Add Journal Entry</h2>
+            <h4>Add Journal Entry</h4>
             <form onSubmit={handleSubmit}>
                 <label>Name:</label>
                 <input

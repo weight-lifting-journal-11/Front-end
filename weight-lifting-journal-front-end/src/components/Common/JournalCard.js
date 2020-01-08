@@ -6,9 +6,9 @@ const JournalCard = ({date, region, id, removeJournal, editJournal, journal}) =>
     return (
         <div>
             <Link to={`/dashboard/${id}`}>
-                <h1>Workout: {region}</h1>
+                <h4>Workout: {region}</h4>
             </Link>
-            <h2>Date: {date}</h2>
+            <h5>Date: {date}</h5>
             <button onClick={() => removeJournal(id)}>Delete</button>
             <button onClick={() => editJournal(journal)}>Edit</button>
         </div>

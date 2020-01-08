@@ -14,7 +14,7 @@ const EditJournal = ({editing, setEditing, currentJournal, updatedJournal}) => {
                 event.preventDefault()
                 updatedJournal(journal.id, journal)
             }}>
-            <h2>Edit</h2>
+            <h4>Edit</h4>
             <label>Name</label>
             <input 
             type="text"
