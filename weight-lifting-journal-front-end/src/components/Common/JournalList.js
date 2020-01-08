@@ -7,6 +7,7 @@ import CreateJournal from '../Forms/CreateJournal'
 import EditJournal from '../Forms/EditJournal'
 
 const JournalList = () => {
+    // Local Storage
     const userID = localStorage.getItem('userID');
     const token = localStorage.getItem('token');
     // Set state for api data
@@ -60,7 +61,7 @@ const JournalList = () => {
                 />
             ) : (
                 // CreateJournal form to create a new workout
-                <CreateJournal />
+                <CreateJournal setJournals={setJournals} journals={journals} />
             )}
             <h1>Journal list</h1>
             {journals.map(journal => (

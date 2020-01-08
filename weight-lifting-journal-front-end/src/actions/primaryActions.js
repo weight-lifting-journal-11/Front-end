@@ -14,13 +14,14 @@ export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 
-export const addJournal = (journal) => dispatch => {
+export const addJournal = (journal, setJournals, journals) => dispatch => {
   console.log('createNewJournal firing from primaryActions.js')
   dispatch({ type: ADD_JOURNAL_START });
   axios
     .post(`https://weight-lifting-journal-11.herokuapp.com/api/journals`, journal, {authorization: token})
     .then(res => {
       dispatch({ type: ADD_JOURNAL_SUCCESS, payload: res.data })
+      setJournals([...journals, journal]);
     })
     .catch(error => {
       dispatch({ type: ADD_JOURNAL_FAILURE, payload: error.response })
