@@ -152,10 +152,10 @@ export const deleteExercise = (id) => dispatch => {
     })
 }
 
-export const editExercise = (id, exercise) => dispatch => {
+export const editExercise = (exercise) => dispatch => {
   dispatch({ type: EDIT_EXERCISE_START })
   axios
-    .put(`https://weight-lifting-journal-11.herokuapp.com/api/exercises/${id}`, exercise, {authorization: token})
+    .put(`https://weight-lifting-journal-11.herokuapp.com/api/exercises/${exercise.id}`, exercise, {authorization: token})
     .then(res => {
       console.log('response from inside redux editExercise', res)
       dispatch({ type: EDIT_EXERCISE_SUCCESS, payload: exercise })

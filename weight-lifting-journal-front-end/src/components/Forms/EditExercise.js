@@ -13,7 +13,7 @@ const EditExercise = ({editing, setEditing, currentExercise, updatedExercise}) =
             Editing...
             <form onSubmit={event => {
                 event.preventDefault()
-                updatedExercise(exercise.id, exercise)
+                updatedExercise(exercise)
             }}>
             <h4>Edit</h4>
             <label>Name</label>
