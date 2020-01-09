@@ -18,10 +18,16 @@ export const StyledHome = styled.div`
         button {
             font-size: 2rem;
             margin: 1rem;
-            padding: .5rem;
-            border-radius: 3px;
-            background: #67E6A1;
-            color: #9A0A0A;
+            padding: 1rem 2rem;
+            border-radius: .5rem;
+            border: solid #00A35E 2px;
+            background: #FFFFFF;
+            color: #00A35E;
+
+            &:hover {
+                color: #FFFFFF;
+                background: #00A35E;
+            }
         }
     }
 `;
