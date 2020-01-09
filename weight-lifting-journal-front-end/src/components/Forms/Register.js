@@ -2,10 +2,13 @@ import React, { useState } from "react";
 import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { register } from '../../actions/primaryActions'
+import { useHistory } from 'react-router-dom';
 
 import { StyledLogin } from '../Styles/StyledLogin';
 
 const Register = props => {
+  const history = useHistory();
+
   const { register, handleSubmit, errors } = useForm();
   const [newUser, setNewUser] = useState({
     username: "",
@@ -21,6 +24,7 @@ const Register = props => {
   const createNewUser = event => {
     // event.preventDefault();
     props.register(newUser)
+    history.push('/login')
     setNewUser({ username: "", password: "", email: "" });
   };
 
