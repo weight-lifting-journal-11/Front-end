@@ -38,7 +38,7 @@ const Register = props => {
           value={newUser.username}
           onChange={handleChanges}
           ref={register({required: "Name Required"})}
-        />
+          />
         {errors.username && <p>{errors.username.message}</p>}
         <input
           type="password"
@@ -47,7 +47,7 @@ const Register = props => {
           value={newUser.password}
           onChange={handleChanges}
           ref={register({required: "Password Required"})}
-        />
+          />
         {errors.password && <p>{errors.password.message}</p>}
         <input
           type="email"
@@ -58,7 +58,7 @@ const Register = props => {
           ref={register({required: "Email Required"})}
         />
         {errors.email && <p>{errors.email.message}</p>}
-        <button>Create your profile</button>
+        <button>Register</button>
       </form>
     </StyledLogin>
   );

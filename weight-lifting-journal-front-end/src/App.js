@@ -19,8 +19,10 @@ function App() {
     <Router>
       <div className="App">
         <StyledNav>
-          <div className='nav-container'>
+          <div className='logo-container'>
             <p>Logo</p>
+          </div>
+          <div className='link-container'>
             <Link to='/login'>
               <p>Login</p>
             </Link>

@@ -5,19 +5,31 @@ export const StyledNav = styled.div`
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: 100px;
+    height: 70px;
     background-color: #67E6A1;
 
-    .nav-container {
+    .logo-container {
         display: flex;
-        justify-content: space-between;
-        max-width: 1200px;
-        width: 100%;
+        justify-content: flex-start;
+        width: 20%;
 
-        p {
+    }
+    .link-container {
+        display: flex;
+        justify-content: flex-end;
+        width: 80%;
+        
+        a {
             text-decoration: none;
             color: #161D18;
+            padding: 0 10px;
+            color: #161D18
+
+            p {
+                font-size: 1.5rem;
+            }
         }
+        
     }
 
 `;
