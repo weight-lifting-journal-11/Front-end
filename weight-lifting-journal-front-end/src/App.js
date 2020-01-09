@@ -20,7 +20,7 @@ function App() {
       <div className="App">
         <StyledNav>
           <div className='logo-container'>
-            <p>Logo</p>
+            <p>Sick Logo</p>
           </div>
           <div className='link-container'>
             <Link to='/login'>
