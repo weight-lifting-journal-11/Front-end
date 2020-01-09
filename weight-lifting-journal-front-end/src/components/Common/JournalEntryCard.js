@@ -8,26 +8,18 @@ const JournalEntryCard = ({name, reps, sets, weight, id, exercise, deleteExercis
     
     return (
         <StyledExerciseCard>
-            <table>
-                <tbody>
-                    <tr>
-                        <th>Name</th>
-                        <th>Reps</th>
-                        <th>Sets</th>
-                        <th>Weight</th>
-                    </tr>
-                    <tr>
-                        <td>{name}</td>
-                        <td>{reps}</td>
-                        <td>{sets}</td>
-                        <td>{weight}</td>
-                    </tr>
-                </tbody>
-            </table>
-            <div className="buttons-container">
-                <button onClick={() => deleteExercise(id)}>Delete</button>
-                {console.log(id)}
-                <button onClick={() => editExercise(exercise)}>Edit</button>
+            <div className="exercise-details-container">
+                <div className="exercise-details">
+                    <p>Exercise: {name}</p>
+                    <p>Reps: {reps}</p>
+                    <p>Sets: {sets}</p>
+                    <p>Weight: {weight}</p>
+                </div>
+                <div className="buttons-container">
+                    <button onClick={() => deleteExercise(id)}>Delete</button>
+                    {console.log(id)}
+                    <button onClick={() => editExercise(exercise)}>Edit</button>
+                </div>
             </div>
         </StyledExerciseCard>
     )
