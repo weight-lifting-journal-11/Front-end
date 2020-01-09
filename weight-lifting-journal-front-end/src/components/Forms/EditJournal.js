@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
+import {StyledJournalForm} from '../Styles/StyledJournalForm';
+
 const EditJournal = ({editing, setEditing, currentJournal, updatedJournal}) => {
     const { register, handleSubmit, errors } = useForm();
     const [journal, setJournal] = useState(currentJournal)
@@ -11,12 +13,12 @@ const EditJournal = ({editing, setEditing, currentJournal, updatedJournal}) => {
         setJournal({...journal, [name]: value })
     }
     return (
-        <div>
+        <StyledJournalForm>
+            <h4>Edit</h4>
             <form onSubmit={handleSubmit(event => {
                 // event.preventDefault()
                 updatedJournal(journal.id, journal)
             })}>
-            <h4>Edit</h4>
             <label>Name</label>
             <input 
             type="text"
@@ -29,7 +31,7 @@ const EditJournal = ({editing, setEditing, currentJournal, updatedJournal}) => {
             <button type="submit">Update</button>
             <button onClick={() => setEditing(false)}>Cancel</button>
             </form>
-        </div>
+        </StyledJournalForm>
     )
 }
 

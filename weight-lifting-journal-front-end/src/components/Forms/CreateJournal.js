@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { addJournal } from '../../actions/primaryActions';
 
+import { StyledJournalForm } from '../Styles/StyledJournalForm';
 
 const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
     const { register, handleSubmit, errors } = useForm();
@@ -44,7 +45,7 @@ const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
     }
 
     return (
-        <div>
+        <StyledJournalForm>
             <h4>Add Journal Entry</h4>
             <form onSubmit={handleSubmit(handleOnSubmit)}>
                 <label>Name:</label>
@@ -58,7 +59,7 @@ const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
                 {errors.region && <p>{errors.region.message}</p>}
                 <button type="submit">Add</button>
             </form>
-        </div>
+        </StyledJournalForm>
     )
 }
 
