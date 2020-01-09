@@ -31,7 +31,7 @@ const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
             date: today,
             [event.target.name]: event.target.value
         })
-        console.log(journal)
+        console.log("from", journal)
     }
     // Handle form submit
     const handleOnSubmit = event => {

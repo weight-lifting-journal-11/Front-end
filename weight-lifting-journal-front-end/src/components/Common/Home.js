@@ -7,7 +7,9 @@ const Home = () => {
 
     return (
         <StyledHome>
-            <h3>Welcome to Making Gainz!</h3>
+            <div className="title">
+                <h3>Welcome to Making Gainz!</h3>
+            </div>
             <div className="buttons-container">
                 <Link to='/login'>
                     <button>Login</button>

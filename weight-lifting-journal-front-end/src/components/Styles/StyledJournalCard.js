@@ -13,10 +13,22 @@ export const StyledJournalCard = styled.div`
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+
+        a {
+            text-decoration: none;
+
+            h4 {
+                color: #007343;
+            }
+        }
+        
+        p {
+            color: #00A35E;
+            font-size: 1.2rem;
+        }
     }
 
     .buttons-container {
-        
         display: flex;
         align-items: flex-start;
         flex-direction: column;
