@@ -2,15 +2,20 @@ import styled from 'styled-components';
 
 export const StyledHome = styled.div`
     background-image: url('https://images.unsplash.com/photo-1544033527-b192daee1f5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80');
-    height: 90vh;
+    height: 93vh;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
     
-    h3 {
-        color: #161D18;
-        background: #007343;
+    .title {
+        background: white;
+        opacity: 90%;
+        width: 80%;
+        margin-top: 100px;
     }
     .buttons-container {
-        height: 500px;
         display: flex;
         align-items: center;
         justify-content: center;

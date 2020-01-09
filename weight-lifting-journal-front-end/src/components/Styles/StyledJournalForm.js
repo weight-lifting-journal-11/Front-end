@@ -16,6 +16,11 @@ export const StyledJournalForm = styled.div`
         width: 50%;
         border-radius: .5rem;
         box-shadow: 5px 5px grey;
+        min-width: 530px;
+
+        @media(max-width: 600px) {
+            min-width: 300px;
+        }
 
         label {
             font-size: 1.8rem;
