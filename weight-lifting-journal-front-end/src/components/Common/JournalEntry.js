@@ -17,17 +17,17 @@ const JournalEntry = ({ exercises, setExercises, editExercise }) => {
     const [currentExercise, setCurrentExercise] = useState(initialExerciseState);
 
     const { id } = useParams();
-
+    const userId = localStorage.getItem('userID')
+    
     // Edit exercise
     const editExerciseHandler = exercise => {
         setEditing(true);
-        setCurrentExercise({id: exercise.id, name: exercise.name, reps: exercise.reps, sets: exercise.sets, weight: exercise.weight})
+        setCurrentExercise({userId: userId, journalId: id, id: exercise.id, name: exercise.name, reps: exercise.reps, sets: exercise.sets, weight: exercise.weight})
     }
     // Update exercise
-    const updatedExercise = (id, updatedExercise) => {
+    const updatedExercise = (updatedExercise) => {
         setEditing(false);
-        editExercise(id, updatedExercise)
-        // setExercises(exercises.map(exercise => (exercise.id === id ? updatedExercise : exercise)))
+        editExercise(updatedExercise)
     }
 
     // Add new exercise
