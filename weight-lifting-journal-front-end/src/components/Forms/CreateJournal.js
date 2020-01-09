@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { connect } from 'react-redux';
 import { addJournal } from '../../actions/primaryActions';
 
+import { StyledJournalForm } from '../Styles/StyledJournalForm';
 
 const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
+    const { register, handleSubmit, errors } = useForm();
     const userID = localStorage.getItem('userID')
 
     // Define today
@@ -31,8 +34,8 @@ const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
         console.log(journal)
     }
     // Handle form submit
-    const handleSubmit = event => {
-        event.preventDefault();
+    const handleOnSubmit = event => {
+        // event.preventDefault();
         addJournal(journal);
         setJournal({
             userId: '',
@@ -42,19 +45,21 @@ const CreateJournal = ({addJournal, addJournalLoading, displayNewJournal}) => {
     }
 
     return (
-        <div>
+        <StyledJournalForm>
             <h4>Add Journal Entry</h4>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(handleOnSubmit)}>
                 <label>Name:</label>
                 <input
                 onChange={handleChange}
                 name="region"
                 type="text"
                 value={journal.region}
+                ref={register({ required: "Workout Name Required", minLength: { value: 2, message: "Workout Name Too Short"} })}
                 />
+                {errors.region && <p>{errors.region.message}</p>}
                 <button type="submit">Add</button>
             </form>
-        </div>
+        </StyledJournalForm>
     )
 }
 

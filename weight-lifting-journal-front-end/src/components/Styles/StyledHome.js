@@ -6,13 +6,28 @@ export const StyledHome = styled.div`
     background-size: cover;
     
     h3 {
-        color: #00A35E;
-        background: #FAFAFA;
+        color: #161D18;
+        background: #007343;
     }
     .buttons-container {
         height: 500px;
         display: flex;
         align-items: center;
         justify-content: center;
+
+        button {
+            font-size: 2rem;
+            margin: 1rem;
+            padding: 1rem 2rem;
+            border-radius: .5rem;
+            border: solid #00A35E 2px;
+            background: #FFFFFF;
+            color: #00A35E;
+
+            &:hover {
+                color: #FFFFFF;
+                background: #00A35E;
+            }
+        }
     }
 `;
