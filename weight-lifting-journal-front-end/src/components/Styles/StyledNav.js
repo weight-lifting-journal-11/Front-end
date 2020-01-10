@@ -10,15 +10,23 @@ export const StyledNav = styled.div`
 
     .logo-container {
         display: flex;
-        justify-content: flex-start;
-        width: 20%;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+
+        img {
+            height: 60px;
+        }
 
     }
     .link-container {
         display: flex;
         justify-content: flex-end;
-        width: 80%;
+        width: 60%;
         
+        @media(max-width: 370px) {
+            flex-direction: column;
+        }
         a {
             text-decoration: none;
             color: #161D18;
@@ -27,9 +35,35 @@ export const StyledNav = styled.div`
 
             p {
                 font-size: 1.5rem;
+
+                @media(max-width: 650px) {
+                    font-size: 1rem;
+                }
             }
         }
         
+    }
+    @media(max-width: 500px) {
+        flex-direction: column;
+        height: 100px;
+        justify-content: space-around;
+
+        .logo-container {
+            width: 100%;
+        }
+        .link-container {
+            width: 100%;
+            justify-content: center;
+
+            a {
+                p {
+                    font-size: 1.2rem;
+                }
+            }
+        }
+    }
+    @media(max-width: 370px) {
+        height: 150px;
     }
 
 `;
