@@ -1,21 +1,26 @@
 import styled from 'styled-components';
 
 export const StyledLogin = styled.div`
-    height: 400px;
+    height: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 
     form {
         display: flex;
-        justify-content: space-around;
+        justify-content: flex-start;
         align-items: center;
         flex-direction: column;
-        height: 250px;
+        height: 300px;
         box-shadow: 10px 10px 5px grey;
-        width: 40%;
+        width: 300px;
         background: #FAFAFA;
         padding: 20px;
+
+        @media(max-width: 500px) {
+            width: 60%;
+        }
 
         p {
             color: #9A0A0A;
@@ -24,7 +29,7 @@ export const StyledLogin = styled.div`
         }
 
         input {
-            width: 50%;
+            width: 80%;
             height: 30px;
             font-size: inherit;
             margin: 10px 0;

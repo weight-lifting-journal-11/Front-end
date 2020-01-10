@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import './App.css';
 
+import dumbbell from './Images/dumbbell.png';
 import Login from './components/Forms/Login';
 import Register from './components/Forms/Register';
 import Dashboard from './components/Common/Dashboard';
@@ -20,7 +21,8 @@ function App() {
       <div className="App">
         <StyledNav>
           <div className='logo-container'>
-            <p>Sick Logo</p>
+            <p>Making Gainz</p>
+            <img src={dumbbell} alt="logo"/>
           </div>
           <div className='link-container'>
             <Link to='/login'>

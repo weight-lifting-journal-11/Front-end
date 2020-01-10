@@ -6,7 +6,7 @@ export const StyledJournalCard = styled.div`
     justify-content: center;
     align-items: center;
     padding: 10px;
-    
+
     .workout {
         width: 45%;
         border-bottom: dashed 2px black;
@@ -19,6 +19,10 @@ export const StyledJournalCard = styled.div`
 
             h4 {
                 color: #007343;
+
+                @media(max-width: 500px) {
+                    font-size: 2rem;
+                }
             }
         }
         
@@ -34,14 +38,19 @@ export const StyledJournalCard = styled.div`
         flex-direction: column;
     }
     button {
+        margin-bottom: 10px;
         font-size: 1rem;
-        margin: .5rem;
         width: 100px;
         padding: .25rem .5rem;
         border-radius: .5rem;
         border: solid #00A35E 2px;
         background: #FFFFFF;
         color: #00A35E;
+
+        @media(max-width: 500px) {
+            width: 60px;
+            margin: 0 0 5px 10px;
+        }
 
         &:hover {
             color: #FFFFFF;

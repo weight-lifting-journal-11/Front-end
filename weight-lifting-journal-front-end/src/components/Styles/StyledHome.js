@@ -14,13 +14,20 @@ export const StyledHome = styled.div`
         opacity: 90%;
         width: 80%;
         margin-top: 100px;
+
+        
     }
     .buttons-container {
         display: flex;
         align-items: center;
         justify-content: center;
 
+        @media(max-width: 500px) {
+            flex-direction: column;
+        }
+
         button {
+            width: 185px;
             font-size: 2rem;
             margin: 1rem;
             padding: 1rem 2rem;
@@ -35,4 +42,15 @@ export const StyledHome = styled.div`
             }
         }
     }
+            @media(max-width: 500px) {
+                height: 88vh;
+
+                .title {
+                    margin-top: 50px;
+
+                    h3 {
+                        font-size: 3.5rem;
+                    }
+                }
+            }
 `;

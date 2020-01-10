@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledJournalForm = styled.div`
-    
+export const StyledExerciseForm = styled.div`
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -21,26 +20,36 @@ export const StyledJournalForm = styled.div`
         @media(max-width: 600px) {
             min-width: 300px;
         }
+        
+        div {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
 
-        label {
-            font-size: 1.8rem;
-            margin-right: 5px;
-            color: #FAFAFA;
-        }
-        input {
-            padding: 5px;
-            font-size: inherit;
-            border-radius: 4px;
+            label {
+                font-size: 1.8rem;
+                color: #FAFAFA;
+                padding: 5px;
+            }
+            input {
+                padding: 5px;
+                font-size: inherit;
+                width: 80%;
+                border-radius: 4px;
+            }
         }
         button {
             font-size: .8rem;
             margin: .5rem;
             width: 100px;
-            padding: .2rem .25rem;
+            padding: .4rem .75rem;
             border-radius: .5rem;
             border: solid #00A35E 2px;
             background: #FFFFFF;
             color: #00A35E;
+            font-size: 1.5rem;
 
         &:hover {
             color: #FFFFFF;
