@@ -39,6 +39,12 @@ export const StyledExerciseForm = styled.div`
                 width: 80%;
                 border-radius: 4px;
             }
+            
+            p {
+                color: red;
+                font-size: 1rem;
+                padding: 5px;
+            }
         }
         button {
             font-size: .8rem;

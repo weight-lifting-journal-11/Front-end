@@ -6,20 +6,11 @@ export const StyledHome = styled.div`
     background-size: cover;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     align-items: center;
     
-    .title {
-        background: white;
-        opacity: 90%;
-        width: 80%;
-        margin-top: 100px;
-
-        
-    }
     .buttons-container {
         display: flex;
-        align-items: center;
         justify-content: center;
 
         @media(max-width: 500px) {

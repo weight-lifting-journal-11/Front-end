@@ -18,6 +18,12 @@ export const StyledJournalForm = styled.div`
         box-shadow: 5px 5px grey;
         min-width: 530px;
 
+        p {
+            color: red;
+            font-size: 1rem;
+            padding: 5px;
+        }
+
         @media(max-width: 600px) {
             min-width: 300px;
         }
